@@ -1,6 +1,7 @@
+
+import{cart} from '../data/cart.js';
+
 // list and information about the products
-
-
 
 let productsHtml = '';
 
