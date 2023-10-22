@@ -125,6 +125,7 @@ function updateCartQuantity() {
   });
 
   document.querySelector('.js-checkout-header-middle-section').innerHTML = (cartQuantity === 0) ? ` ` : `${cartQuantity} items`
+  document.querySelector('.js-payment-summary-items-count').innerHTML = (cartQuantity === 0) ?  ` ` : `Items(${cartQuantity})`
 
 
 }
