@@ -1,4 +1,4 @@
-import { cart, removeFromCart, updateQuantity } from "../data/cart.js";
+import { cart, removeFromCart, updateQuantity , updateDeliveryOption}from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 import { deliveryOptions } from "../data/deliveryOptions.js";
@@ -43,7 +43,7 @@ cart.forEach((cartItem) => {
   cartSummaryHTML += `
      <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date js-delivery-date">
-                ${datestring}
+                Delivery date : ${datestring}
             </div>
 
             <div class="cart-item-details-grid">
@@ -99,11 +99,12 @@ cart.forEach((cartItem) => {
       const priceString = deliveryOption.priceCents === 0 ? 'FREE' : `$${formatCurrency(deliveryOption.priceCents)} -`
       const isChecked = deliveryOption.id === cartItem.deliveryOptionId 
 
-      html +=`<div class="delivery-option">
+      html +=`<div class="delivery-option js-delivery-option"
+      data-product-id = "${matchingProduct.id}"
+      data-delivery-option-id = "${deliveryOption.id}">
                   <input type="radio"
                     ${isChecked ? 'checked' : ''}
-                    class="delivery-option-input"
-                    name="delivery-option-${matchingProduct.id}" value=2>
+                    class="delivery-option-input">
                   <div>
                     <div class="delivery-option-date">
                      ${datestring}
@@ -178,5 +179,13 @@ document.querySelectorAll('.js-save-input-link').forEach((link) => {
   });
 });
 
+document.querySelectorAll('.js-delivery-option').forEach((element)=>{
+  element.addEventListener('click',()=>{
+    //const productId = element.dataset.productId;
+    //const deliveryOptionId = element.dataset.deliveryOptionId
+    const {productId , deliveryOptionId} = element.dataset;
+    updateDeliveryOption(productId, deliveryOptionId);
+  })
+})
 
 
