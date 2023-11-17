@@ -2,9 +2,7 @@
 //isWeekEnd()
 function isSatSun(day) {
     day = day.format('dddd')
-    if (day === "Saturday" || day === "Sunday") {
-        return day;
-    }
+    return day === "Saturday" || day === "Sunday";
 }
 
 export default isSatSun;

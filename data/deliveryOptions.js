@@ -1,3 +1,6 @@
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
+import isSatSun from '../scripts/utils/isweekEnd.js';
+
 export const deliveryOptions  = [{
     id:'1',
     deliveryDays:7,
@@ -22,4 +25,20 @@ export function getDeliveryOptions(deliveryOptionId){
         };
     });
     return deliveryOption
+}
+
+export function calculateDeliveryDate(deliveryOption){
+    
+    let remainingDays = deliveryOption.deliveryDays;
+    let deliveryDate = dayjs();
+    
+    while(remainingDays>0){
+        deliveryDate = deliveryDate.add(1,'day');
+        if(!isSatSun(deliveryDate)){
+            remainingDays--;
+        }
+    }
+    
+    return deliveryDate.format('dddd, MMMM D');
+    
 }
