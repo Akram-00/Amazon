@@ -4,7 +4,7 @@ import { formatCurrency } from "../utils/money.js";
 import { deliveryOptions, getDeliveryOptions } from "../../data/deliveryOptions.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
 import { renderPayementSummary } from "./paymentSummary.js";
-
+import isSatSun from "../utils/isweekEnd.js";
 
 
 export function renderOrderSummary() {
@@ -26,7 +26,7 @@ export function renderOrderSummary() {
       'days'
     );
     const datestring = deliveryDate.format('dddd, MMMM D');
-
+    console.log(isSatSun(today))
     cartSummaryHTML += `
      <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date js-delivery-date">
