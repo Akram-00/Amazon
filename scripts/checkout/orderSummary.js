@@ -112,17 +112,12 @@ export function renderOrderSummary() {
     });
   });
 
-
-
-  
-
   document.querySelectorAll('.js-update-quantity').forEach((link) => {
     link.addEventListener('click', () => {
       const productId = link.dataset.productId;
 
       const container = document.querySelector(`.js-cart-item-container-${productId}`);
       container.classList.add('is-editing-quantity');
-      
     });
   });
 
